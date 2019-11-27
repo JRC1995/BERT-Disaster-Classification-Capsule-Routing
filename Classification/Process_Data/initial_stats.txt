@@ -1,0 +1,157 @@
+Total Data: 149217
+
+Disaster Statistics
+
+Cyclone Pam: 2571
+BigCrisis: 4786
+Hurricane Sandy: 924
+Queensland Floods: 18179
+Joplin Tornado: 3254
+Alberta Floods: 10160
+Lac Megantic Train Crash: 955
+Boston Bombings: 10019
+West Texas Explosion: 9672
+Oklahoma Tornado: 9221
+Landslides Worldwide: 4326
+Colorado Wildfires: 1164
+Costa Rica Earthquake: 1240
+Pakistan Earthquake: 1873
+Guatemala Earthquake: 923
+Italy Earthquake: 926
+Philipinnes Floods: 834
+Typhoon Pablo: 937
+Venezuela Refinery: 939
+Australia Bushfire: 1063
+Bohol Earthquake: 843
+Brazil Nightclub Fire: 795
+Colorado Floods: 1834
+LA Airport Shootings: 931
+Manila Floods: 902
+NY Train Crash: 769
+Russia Meteor: 1218
+Sardinia Floods: 885
+Savar Building Collapse: 1137
+Singapore Haze: 761
+Spain Train Crash: 829
+Typhoon Yolanda: 932
+Typhoon Hagupit: 10720
+California Wildfires: 1486
+Hurricane Maria: 4000
+Hurricane Harvey: 4000
+Hurricane Irma: 4041
+Mexico Earthquake: 1239
+Iraq Iran Earthquake: 499
+Srilanka Floods: 832
+California Earthquake: 1861
+Chile Earthquake: 4945
+Ebola: 1765
+Hurricane Odile: 1418
+India Floods: 1793
+Middle East Respiratory Syndrome: 1708
+Pakistan Floods: 1765
+Nepal Earthquake: 12892
+Iceland volcano: 346
+Malaysia Airline MH370: 126
+
+
+Label Statistics
+
+Other Useful Information: 8375
+other_useful_information: 6235
+infrastructure_and_utilities_damage: 1429
+Infrastructure and utilities: 2095
+Affected individuals: 4816
+not_related_or_irrelevant: 2608
+Not related or irrelevant: 1652
+donation_needs_or_offers_or_volunteering_services: 2975
+Donations and volunteering: 2905
+injured_or_dead_people: 3205
+sympathy_and_emotional_support: 2074
+Sympathy and support: 4305
+missing_trapped_or_found_people: 413
+Personal updates: 49
+displaced_people_and_evacuations: 572
+Other relevant information: 532
+Caution and advice: 2495
+Injured or dead people: 111
+Sympathy and emotional support: 527
+Displaced people: 29
+Volunteer or professional services: 75
+Money: 63
+Shelter and supplies: 25
+Missing, trapped, or found people: 59
+Personal Only: 294
+Informative (Direct or Indirect): 95
+Casualties and damage: 156
+Informative (Indirect): 357
+Other: 164
+Information Source: 68
+on-topic: 26381
+Unknown: 124
+Informative (Direct): 89
+Donations of money, goods or services: 44
+off-topic: 27276
+not_relevant: 10604
+Not applicable: 1085
+Not labeled: 3164
+Not physical landslide: 3637
+relevant: 8779
+Not Informative: 6291
+other_relevant_information: 5974
+infrastructure_and_utility_damage: 1210
+not_informative: 3802
+missing_or_found_people: 40
+rescue_volunteering_or_donation_effort: 3293
+affected_individuals: 473
+not_relevant_or_cant_judge: 828
+vehicle_damage: 54
+dont_know_or_cant_judge: 7
+caution_and_advice: 1057
+Other useful information: 578
+Donations of supplies and/or volunteer work: 24
+Injured and dead: 94
+Infrastructure: 123
+Personal updates, sympathy, support: 414
+People missing or found: 4
+Donations of money: 8
+Needs of those affected: 70
+treatment: 368
+disease_transmission: 334
+disease_signs_or_symptoms: 345
+prevention: 251
+deaths_reports: 73
+affected_people: 543
+Informative: 400
+Not related to crisis: 245
+Personal only: 65
+Other Relevant Information: 2686
+Humanitarian Aid Provided: 318
+Infrastructure Damage: 401
+Requests for Help/Needs: 66
+Not Relevant: 5983
+Urgent Needs: 108
+Response Efforts: 944
+Other relevant: 2
+Not relevant: 1
+Response efforts: 2
+Infrastructure damage: 3
+Animal management: 1
+Not informative: 29
+Non-government: 1
+Yes: 16
+No: 64
+Personal: 18
+Praying: 18
+Physical landslide: 692
+Traditional media: 1
+: 3126
+Informative (Direct) Informative (Direct or Indirect): 3
+Personal only Other: 1
+Informative (Indirect) Informative (Direct or Indirect): 2
+Caution and advice Unknown: 2
+People missing, found or seen: 8
+Information source: 5
+Caution and advice Casualties and damage Unknown: 1
+Casualties and damage Information source: 2
+Caution and advice Casualties and damage Information source: 1
+Caution and advice Information source: 1
