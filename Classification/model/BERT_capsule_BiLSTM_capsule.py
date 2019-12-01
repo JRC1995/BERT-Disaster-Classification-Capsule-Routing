@@ -38,15 +38,15 @@ class Encoder(nn.Module):
 
         self.BiLSTM = BiLSTM_Encoder(D=768, hidden_size=hidden_size, dropout=BiLSTM_dropout)
 
-        self.tobinary = capsule_fusion(D=2*hidden_size,
-                                       n_in=1, n_out=2,
-                                       in_dim=64, out_dim=8,
-                                       depth_encoding=False)
+        self.hidden_fusion = capsule_fusion(D=2*hidden_size,
+                                            n_in=1, n_out=2*hidden_size,
+                                            in_dim=128, out_dim=1,
+                                            depth_encoding=False)
 
-        self.tomulti = capsule_fusion(D=2*hidden_size,
-                                      n_in=1, n_out=classes_num,
-                                      in_dim=64, out_dim=8,
-                                      depth_encoding=False)
+        self.linear1 = Linear(2*hidden_size, 300)
+        self.linear2 = Linear(300, 1)
+        self.linear3 = Linear(300, classes_num)
+
         # @torchsnooper.snoop()
 
     def forward(self, x, mask):
@@ -68,9 +68,12 @@ class Encoder(nn.Module):
 
         encoder_states, final_state = self.BiLSTM(fused_layers, mask)
 
-        binary_prob, _ = self.tobinary(encoder_states)
-        classes_prob, _ = self.tomulti(encoder_states)
+        _, fused_hidden = self.hidden_fusion(encoder_states)
 
-        binary_prob = F.softmax(binary_prob, dim=-1)[:, 0].view(N, 1)
+        fused_hidden = fused_hidden.view(N, 2*self.hidden_size)
+
+        intermediate = F.gelu(self.linear1(fused_hidden))
+        binary_prob = T.sigmoid(self.linear2(intermediate))
+        classes_prob = self.linear3(intermediate)
 
         return binary_prob, classes_prob
