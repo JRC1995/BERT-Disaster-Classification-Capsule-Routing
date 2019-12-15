@@ -74,6 +74,8 @@ def process():
                                         num = 9
                                     tweet = str(row[num])
                                     tweet = tweet.encode("ascii", errors="ignore").decode()
+                                    if len(tweet.split(" ")) > 300:
+                                        print("SWDM: "+" ".join(tweet))
                                     data[disaster_key]["tweets"].append(tweet.lower())
                                     data[disaster_key]["labels"].append(row[5])
 

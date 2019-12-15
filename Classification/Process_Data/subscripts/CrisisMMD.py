@@ -71,6 +71,8 @@ def process():
                                     data[disaster_key]["tweet_ids"].append(row[0])
                                     tweet = str(row[12])
                                     tweet = tweet.encode("ascii", errors="ignore").decode()
+                                    if len(tweet.split(" ")) > 300:
+                                        print("CrisisMMD: "+" ".join(tweet))
                                     data[disaster_key]["tweets"].append(tweet.lower())
                                     if row[6] == '':
                                         label = row[2]

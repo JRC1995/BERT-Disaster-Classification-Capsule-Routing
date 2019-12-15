@@ -77,6 +77,8 @@ def process():
                                     data[disaster_key]["tweet_ids"].append(row[0])
                                     tweet = str(row[1])
                                     tweet = tweet.encode("ascii", errors="ignore").decode()
+                                    if len(tweet.split(" ")) > 300:
+                                        print("CrisisLexT26: "+" ".join(tweet))
                                     data[disaster_key]["tweets"].append(tweet.lower())
                                     data[disaster_key]["labels"].append(row[3])
 

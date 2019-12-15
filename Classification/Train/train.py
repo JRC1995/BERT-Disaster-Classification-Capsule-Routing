@@ -29,7 +29,7 @@ import modules.eval as eval
 
 
 parser = argparse.ArgumentParser(description='Model Name')
-parser.add_argument('--model', type=str, default="BERT_BiLSTM")
+parser.add_argument('--model', type=str, default="BERT_capsule")
 flags = parser.parse_args()
 
 model_name = flags.model
@@ -48,6 +48,7 @@ model_dict = {'BERT_NL': BERT_NL_Encoder,
 Encoder = model_dict.get(model_name, BERT_BiLSTM_Encoder)
 
 device = T.device('cuda' if T.cuda.is_available() else 'cpu')
+# print(device)
 
 if device == T.device('cuda'):
     T.set_default_tensor_type(T.cuda.FloatTensor)
@@ -58,8 +59,13 @@ random.seed(101)
 
 bnb = bucket_and_batch()
 
-val_batch_size = 64
-train_batch_size = 64
+if 'capsule' in model_name:
+    val_batch_size = 4
+    train_batch_size = 4
+else:
+    val_batch_size = 8
+    train_batch_size = 8
+
 accu_step = 64/train_batch_size
 max_grad_norm = 2
 
@@ -67,18 +73,18 @@ with open('../Processed_Data/train_data.json') as file:
 
     data = json.load(file)
 
-    train_texts = data["tweets"]  # [0:500]
-    train_labels = data["labels"]  # [0:500]
-    train_binary_labels = data["binary_labels"]  # [0:500]
+    train_texts = data["tweets"]
+    train_labels = data["labels"]
+    train_binary_labels = data["binary_labels"]
 
 
 with open('../Processed_Data/val_data.json') as file:
 
     data = json.load(file)
 
-    val_texts = data["tweets"]  # [0:500]
-    val_labels = data["labels"]  # [0:500]
-    val_binary_labels = data["binary_labels"]  # [0:500]
+    val_texts = data["tweets"]
+    val_labels = data["labels"]
+    val_binary_labels = data["binary_labels"]
 
 
 with open('../Processed_Data/label_info.json') as file:
@@ -176,9 +182,9 @@ def predict(text_ids, labels, binary_labels, input_mask, label_mask, train=True)
 
     with T.no_grad():
 
-        text_ids = T.tensor(text_ids).to(device)
-        labels = T.tensor(labels).to(device)
-        binary_labels = T.tensor(binary_labels).to(device)
+        text_ids = T.tensor(text_ids).long().to(device)
+        labels = T.tensor(labels).long().to(device)
+        binary_labels = T.tensor(binary_labels).long().to(device)
         input_mask = T.tensor(input_mask).float().to(device)
         label_mask = T.tensor(label_mask).float().to(device)
 
@@ -212,7 +218,7 @@ epochs = 100
 val_batches_texts, val_batches_text_ids, \
     val_batches_labels, val_batches_binary_labels, \
     val_batches_mask, val_batches_label_masks = bnb.bucket_and_batch(
-        val_texts, val_labels, val_binary_labels,  labels2idx, binary_labels2idx, val_batch_size)
+        val_texts, val_labels, val_binary_labels,  labels2idx, binary_labels2idx, val_batch_size, train=False)
 
 print("Validation batches loaded")
 
@@ -417,5 +423,5 @@ for epoch in range(past_epoch, epochs):
     if impatience > patience:
         scheduler.step()
         meta_impatience += 1
-        if meta_impatience > patience:
+        if meta_impatience > 1:
             break

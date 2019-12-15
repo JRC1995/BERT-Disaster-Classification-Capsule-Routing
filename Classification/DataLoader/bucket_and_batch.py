@@ -9,7 +9,7 @@ import copy
 class bucket_and_batch:
 
     def bucket_and_batch(self, texts, labels, binary_labels,
-                         labels2idx, binary_labels2idx, batch_size, model='BERT'):
+                         labels2idx, binary_labels2idx, batch_size, model='BERT', train=True):
 
         idx2labels = {v: k for k, v in labels2idx.items()}
         binary_idx2labels = {v: k for k, v in binary_labels2idx.items()}
@@ -27,8 +27,27 @@ class bucket_and_batch:
             PAD = tokenizer.encode("<pad>")[0]
 
         original_texts = copy.deepcopy(texts)
-        text_ids = [tokenizer.encode(text, add_special_tokens=True,
-                                     max_length=500) for text in texts]
+
+        """
+
+        for text in texts:
+            test_1 = tokenizer.encode(text, add_special_tokens=True,
+                                     max_length=300)
+            test_2 = tokenizer.encode(text, add_special_tokens=True,
+                                     max_length=500)
+
+            if test_1 != test_2:
+                print("FLAG!")
+        """
+
+
+
+        if train is True:
+            text_ids = [tokenizer.encode(text, add_special_tokens=True,
+                                         max_length=300) for text in texts]
+        else:
+            text_ids = [tokenizer.encode(text, add_special_tokens=True,
+                                         max_length=500) for text in texts]
 
         true_seq_lens = np.zeros((len(texts)), dtype=int)
 
