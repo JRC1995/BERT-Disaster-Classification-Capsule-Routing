@@ -14,7 +14,7 @@ Slides [here](https://docs.google.com/presentation/d/1R8PV1bEQqgApC2vYTMQhP0pXRv
 
 Besides HuggingFace's library we used [Heinsen Routing official code repository](https://github.com/glassroom/heinsen_routing) as a reference.
 
-[Krishna Garg](https://www.linkedin.com/in/krishnagarg/) helped with training some of the models, preparing the table in project report and slides, and preparing [test.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Test).
+[Krishna Garg](https://www.linkedin.com/in/krishnagarg/) helped with training some of the models, preparing the table in project report and slides, and preparing [test.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Test/test.py).
 
 ## Related Work
 
