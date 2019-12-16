@@ -102,5 +102,40 @@ year={2018}
 ```
 [Olteanu et al. 2014] Alexandra Olteanu, Carlos Castillo, Fernando Diaz, Sarah Vieweg: "CrisisLex: A Lexicon for Collecting and Filtering Microblogged Communications in Crises". ICWSM 2014.
 ```
+## Dataset Statistics
+
+See [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/final_stats.txt).
+
+We prepare annotations for both multi-class classification and binary classification. We train for both in a multi-task framework.
+
+## Label Reduction Scheme
+
+See this [code](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_3rd_Stage.py) for the exact label reduction scheme. 
+
+
+## Data Processing
+
+First, the data can be either downloaded from the above links or collected from the tweet ids I make publicly available:
+https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Processed_Data
+
+However, some of the tweet ids are not exactly tweet ids but some other ids (especially for the data from Resource #2 and Resource #3). You can get the same data by downloading from resource #2 and # 3 or you can also just filter them out (check for the length of tweet ids - their length will be much less) and ignore them. Should not make a lot of difference.
+
+There are also some issues with extracting data in our codes from resource #2 and #3. Multiple rows get concatenated into one string. I noticed it too late, and although I could try to fix it, I didn't because one 1 or 2 samples were like this. 
+
+Now if you download form tweet ids, they are already annotated in the json files. If you load the JSON file in some variable "json_data" then you can access the list of tweet ids from:
+```
+json_data["tweet_ids"]
+```
+You can access the corresponding multi-class labels from:
+```
+json_data["labels"]
+```
+You can access the corresponding binary labels from:
+```
+d["binary_labels"]
+```
+
+
+
 
 (Under Construction)
