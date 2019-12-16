@@ -142,15 +142,15 @@ But you need to pre-process the tweets yourself. For pre-processing use the **pr
 
 Instead of downloading from tweet ids, if you download from the above mentioned links then you can run the pre-processing files sequentially to process the data and split them into training, validation, and testing sets. Precisely, you have run the following files in the specific order:
 
-[Process_1st_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_1st_Stage.py)
+1. [Process_1st_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_1st_Stage.py)
 
-[Process_2nd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_2nd_Stage.py)
+2. [Process_2nd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_2nd_Stage.py)
 
-[Process_3rd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_3rd_Stage.py)
+3. [Process_3rd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_3rd_Stage.py)
 
-[Process_4th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_4th_Stage.py)
+4. [Process_4th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_4th_Stage.py)
 
-[Process_5th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_5th_Stage.py)
+5. [Process_5th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_5th_Stage.py)
 
 There are surely better ways to set up the pre-processing part than running them manually in this manner, but I am a bad coder. 
 
