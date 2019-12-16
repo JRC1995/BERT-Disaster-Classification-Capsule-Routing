@@ -452,7 +452,7 @@ Releasing the full processed data would have made things a lot easier but Twitte
 
 Instead of all the above hassle you can set up your own code for data extraction, aggregation, and processing. Ultimately, this may be the easiest thing to do for some of you given my clumsy setup. 
 
-All you need to do is prepare three json files in this [folder](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Processed_Data) - train_data.json, val_data.json, and test_data.json. Each file should have contents in the same format:
+What you need to do is prepare three json files in this [folder](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Processed_Data) - train_data.json, val_data.json, and test_data.json. Each file should have contents in the same format:
 
 ```
 d = {}
@@ -479,6 +479,7 @@ with open("label_info.json", 'w') as outfile:
     json.dump(d, outfile)
 ```
 
+You can use any procedure you like to set up the class weights. Note, I only used the class weights for multi-class classification. 
 
 ## Saving (Multilingual) BERT
 
@@ -489,18 +490,19 @@ You can also download a different model here, but if you use some other 'BERT-li
 
 ## Training
 
+Training can be started once you have the data properly set up and once BERT is saved in the proper directory. 
+There are multiple model that can be trained. See [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Train) for instructions. 
 
 
 ## Testing
 
+Testing is similar to Training. See [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Test) for instructions.
+
 ## Import Errors
 
+I prepared the code in Ubuntu. In other platforms there may be some importing issues due to directory paths (relative pathing issues). It should not be a big deal to solve however. You have to just make sure that the code is running in the directory it is supposed to. 
 
 
 ## Masked Language Modeling (MLM)
 
-There is a [demo code](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/MLM/Demo.py) for masked language model training. One could build upon this code to set up MLM training with loads of unannotated Twitter data and build a 'Tweet-BERT'. BERT is mostly pre-trained on formal domains so pre-training on informal domains like Twitter can be potentially helpful - making BERT more 'familiar' with the distributional nature of informal text domains. It would be something interesting to try. 
-
-
-
-(Under Construction)
+There is a [demo code](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/MLM/Demo.py) for masked language model training. One could build upon this code to set up MLM training with loads of unannotated Twitter data and build a 'Tweet-BERT'. BERT is mostly pre-trained on formal domains so pre-training on informal domains like Twitter can be potentially helpful - making BERT more 'familiar' with the distributional nature of informal text domains. It would be something interesting to try in the future. 
