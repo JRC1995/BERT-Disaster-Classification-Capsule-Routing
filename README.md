@@ -122,7 +122,7 @@ However, some of the tweet ids are not exactly tweet ids but some other ids (esp
 
 There are also some issues with extracting data in our codes from resource #2 and #3. Multiple rows get concatenated into one string. I noticed it too late, and although I could try to fix it, I didn't because one 1 or 2 samples were like this. 
 
-Now if you download form tweet ids, they are already annotated in the json files. If you load the JSON file in some variable "json_data" then you can access the list of tweet ids from:
+Now if you download from tweet ids, they are already annotated in the json files. If you load the JSON file in some variable "json_data" then you can access the list of tweet ids from:
 ```
 json_data["tweet_ids"]
 ```
@@ -132,9 +132,47 @@ json_data["labels"]
 ```
 You can access the corresponding binary labels from:
 ```
-d["binary_labels"]
+json_data["binary_labels"]
 ```
+But you need to pre-process the tweets yourself. For pre-processing use the **process_tweet** function from [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_2nd_Stage.py).
 
+Instead of downloading from tweet ids, if you download from the above mentioned links then you can run the pre-processing files sequentially to process the data and split them into training, validation, and testing sets. Precisely, you have run the following files in the specific order:
+
+[Process_1st_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_1st_Stage.py)
+
+[Process_2nd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_2nd_Stage.py)
+
+[Process_3rd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_3rd_Stage.py)
+
+[Process_4th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_4th_Stage.py)
+
+[Process_5th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_5th_Stage.py)
+
+There are surely better ways to set up the pre-processing part than running them manually in this manner, but I am a bad coder. 
+
+But, **BEFORE** you run the pre-processing files you have to take care of two things: Directories and Filenames.
+
+
+Releasing the full processed data would have made things a lot easier but Twitter privacy policies make that difficult. 
+
+
+## Saving (Multilingual) BERT
+
+Run [Save_pre_trained_locally.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Save_pre_trained_locally.py) to download and locally save Multilingual BERT (cased, base) model through HuggingFace's library. Rest of the codes use the local directory to load BERT. So running this file is **necessary** before training or testing the models. 
+
+You can also download a different model here, but if you use some other 'BERT-like' model (XLNet, RoBERTa, ELECTRA etc.) then you would need to change quite a few things. You can contact me for guidance. 
+
+
+## Training
+
+
+
+## Testing
+
+
+## Masked Language Modeling (MLM)
+
+There is a [demo code](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/MLM/Demo.py) for masked language model training. One could build upon this code to set up MLM training with loads of unannotated Twitter data and build a 'Tweet-BERT'. BERT is mostly pre-trained on formal domains so pre-training on informal domains like Twitter can be potentially helpful - making BERT more 'familiar' with the distributional nature of informal text domains. It would be something interesting to try. 
 
 
 
