@@ -14,6 +14,10 @@ Slides [here](https://docs.google.com/presentation/d/1R8PV1bEQqgApC2vYTMQhP0pXRv
 
 Besides HuggingFace's library we used [Heinsen Routing](https://github.com/glassroom/heinsen_routing) as a reference.
 
+## Related Work
+
+See [here](http://web.stanford.edu/class/cs224n/reports/custom/15785631.pdf) and [here](https://github.com/sebsk/CS224N-Project).
+
 ## Datasets Used
 
 We collected our data from various sources:
