@@ -154,10 +154,298 @@ Instead of downloading from tweet ids, if you download from the above mentioned 
 
 There are surely better ways to set up the pre-processing part than running them manually in this manner, but I am a bad coder. 
 
-But, **BEFORE** you run the pre-processing files you have to take care of two things: Directories and Filenames.
+However, **BEFORE** you run the pre-processing files you have to take care of two things: Directories and Filenames.
+
+This is the exact directory structure that I used (all the data should be put [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Data)):
+
+```
+├── BigCrisisData
+│   ├── sample.csv
+│   ├── sample_prccd.csv
+│   ├── sample_prccd_dev.csv
+│   ├── sample_prccd_test.csv
+│   └── sample_prccd_train.csv
+├── CrisisLexT26
+│   ├── 2012_Colorado_wildfires
+│   │   ├── 2012_Colorado_wildfires-event_description.json
+│   │   ├── 2012_Colorado_wildfires-tweetids_entire_period.csv
+│   │   ├── 2012_Colorado_wildfires-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Costa_Rica_earthquake
+│   │   ├── 2012_Costa_Rica_earthquake-event_description.json
+│   │   ├── 2012_Costa_Rica_earthquake-tweetids_entire_period.csv
+│   │   ├── 2012_Costa_Rica_earthquake-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Guatemala_earthquake
+│   │   ├── 2012_Guatemala_earthquake-event_description.json
+│   │   ├── 2012_Guatemala_earthquake-tweetids_entire_period.csv
+│   │   ├── 2012_Guatemala_earthquake-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Italy_earthquakes
+│   │   ├── 2012_Italy_earthquakes-event_description.json
+│   │   ├── 2012_Italy_earthquakes-tweetids_entire_period.csv
+│   │   ├── 2012_Italy_earthquakes-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Philipinnes_floods
+│   │   ├── 2012_Philipinnes_floods-event_description.json
+│   │   ├── 2012_Philipinnes_floods-tweetids_entire_period.csv
+│   │   ├── 2012_Philipinnes_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Typhoon_Pablo
+│   │   ├── 2012_Typhoon_Pablo-event_description.json
+│   │   ├── 2012_Typhoon_Pablo-tweetids_entire_period.csv
+│   │   ├── 2012_Typhoon_Pablo-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2012_Venezuela_refinery
+│   │   ├── 2012_Venezuela_refinery-event_description.json
+│   │   ├── 2012_Venezuela_refinery-tweetids_entire_period.csv
+│   │   ├── 2012_Venezuela_refinery-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Alberta_floods
+│   │   ├── 2013_Alberta_floods-event_description.json
+│   │   ├── 2013_Alberta_floods-tweetids_entire_period.csv
+│   │   ├── 2013_Alberta_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Australia_bushfire
+│   │   ├── 2013_Australia_bushfire-event_description.json
+│   │   ├── 2013_Australia_bushfire-tweetids_entire_period.csv
+│   │   ├── 2013_Australia_bushfire-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Bohol_earthquake
+│   │   ├── 2013_Bohol_earthquake-event_description.json
+│   │   ├── 2013_Bohol_earthquake-tweetids_entire_period.csv
+│   │   ├── 2013_Bohol_earthquake-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Boston_bombings
+│   │   ├── 2013_Boston_bombings-event_description.json
+│   │   ├── 2013_Boston_bombings-tweetids_entire_period.csv
+│   │   ├── 2013_Boston_bombings-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Brazil_nightclub_fire
+│   │   ├── 2013_Brazil_nightclub_fire-event_description.json
+│   │   ├── 2013_Brazil_nightclub_fire-tweetids_entire_period.csv
+│   │   ├── 2013_Brazil_nightclub_fire-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Colorado_floods
+│   │   ├── 2013_Colorado_floods-event_description.json
+│   │   ├── 2013_Colorado_floods-tweetids_entire_period.csv
+│   │   ├── 2013_Colorado_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Glasgow_helicopter_crash
+│   │   ├── 2013_Glasgow_helicopter_crash-event_description.json
+│   │   ├── 2013_Glasgow_helicopter_crash-tweetids_entire_period.csv
+│   │   ├── 2013_Glasgow_helicopter_crash-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_LA_airport_shootings
+│   │   ├── 2013_LA_airport_shootings-event_description.json
+│   │   ├── 2013_LA_airport_shootings-tweetids_entire_period.csv
+│   │   ├── 2013_LA_airport_shootings-tweets_labeled.csv
+│   │   ├── index-1.html
+│   │   └── README.md
+│   ├── 2013_Lac_Megantic_train_crash
+│   │   ├── 2013_Lac_Megantic_train_crash-event_description.json
+│   │   ├── 2013_Lac_Megantic_train_crash-tweetids_entire_period.csv
+│   │   ├── 2013_Lac_Megantic_train_crash-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Manila_floods
+│   │   ├── 2013_Manila_floods-event_description.json
+│   │   ├── 2013_Manila_floods-tweetids_entire_period.csv
+│   │   ├── 2013_Manila_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_NY_train_crash
+│   │   ├── 2013_NY_train_crash-event_description.json
+│   │   ├── 2013_NY_train_crash-tweetids_entire_period.csv
+│   │   ├── 2013_NY_train_crash-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Queensland_floods
+│   │   ├── 2013_Queensland_floods-event_description.json
+│   │   ├── 2013_Queensland_floods-tweetids_entire_period.csv
+│   │   ├── 2013_Queensland_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Russia_meteor
+│   │   ├── 2013_Russia_meteor-event_description.json
+│   │   ├── 2013_Russia_meteor-tweetids_entire_period.csv
+│   │   ├── 2013_Russia_meteor-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Sardinia_floods
+│   │   ├── 2013_Sardinia_floods-event_description.json
+│   │   ├── 2013_Sardinia_floods-tweetids_entire_period.csv
+│   │   ├── 2013_Sardinia_floods-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Savar_building_collapse
+│   │   ├── 2013_Savar_building_collapse-event_description.json
+│   │   ├── 2013_Savar_building_collapse-tweetids_entire_period.csv
+│   │   ├── 2013_Savar_building_collapse-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Singapore_haze
+│   │   ├── 2013_Singapore_haze-event_description.json
+│   │   ├── 2013_Singapore_haze-tweetids_entire_period.csv
+│   │   ├── 2013_Singapore_haze-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Spain_train_crash
+│   │   ├── 2013_Spain_train_crash-event_description.json
+│   │   ├── 2013_Spain_train_crash-tweetids_entire_period.csv
+│   │   ├── 2013_Spain_train_crash-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_Typhoon_Yolanda
+│   │   ├── 2013_Typhoon_Yolanda-event_description.json
+│   │   ├── 2013_Typhoon_Yolanda-tweetids_entire_period.csv
+│   │   ├── 2013_Typhoon_Yolanda-tweets_labeled.csv
+│   │   └── README.md
+│   ├── 2013_West_Texas_explosion
+│   │   ├── 2013_West_Texas_explosion-event_description.json
+│   │   ├── 2013_West_Texas_explosion-tweetids_entire_period.csv
+│   │   ├── 2013_West_Texas_explosion-tweets_labeled.csv
+│   │   └── README.md
+│   └── README.md
+├── CrisisLexT6
+│   ├── 2012_Sandy_Hurricane
+│   │   └── 2012_Sandy_Hurricane-ontopic_offtopic.csv
+│   ├── 2013_Alberta_Floods
+│   │   └── 2013_Alberta_Floods-ontopic_offtopic.csv
+│   ├── 2013_Boston_Bombings
+│   │   └── 2013_Boston_Bombings-ontopic_offtopic.csv
+│   ├── 2013_Oklahoma_Tornado
+│   │   └── 2013_Oklahoma_Tornado-ontopic_offtopic.csv
+│   ├── 2013_Queensland_Floods
+│   │   └── 2013_Queensland_Floods-ontopic_offtopic.csv
+│   └── 2013_West_Texas_Explosion
+│       └── 2013_West_Texas_Explosion-ontopic_offtopic.csv
+├── CrisisMMD
+│   ├── annotations
+│   │   ├── california_wildfires_final_data.tsv
+│   │   ├── hurricane_harvey_final_data.tsv
+│   │   ├── hurricane_irma_final_data.tsv
+│   │   ├── hurricane_maria_final_data.tsv
+│   │   ├── iraq_iran_earthquake_final_data.tsv
+│   │   ├── mexico_earthquake_final_data.tsv
+│   │   └── srilanka_floods_final_data.tsv
+│   └── Readme.txt
+├── CrisisNLP_Crowdflower
+│   ├── 2013_Pakistan_eq
+│   │   ├── 2013_Pakistan_earthquake_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_California_Earthquake
+│   │   ├── 2014_California_Earthquake_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Chile_Earthquake_cl
+│   │   ├── 2014_Chile_Earthquake_cl_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Chile_Earthquake_en
+│   │   ├── 2014_Chile_Earthquake_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_ebola_cf
+│   │   ├── 2014_ebola_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Hurricane_Odile_Mexico_en
+│   │   ├── 2014_Odile_Hurricane_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_India_floods
+│   │   ├── 2014_India_floods_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Middle_East_Respiratory_Syndrome_en
+│   │   ├── 2014_MERS_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Pakistan_floods
+│   │   ├── 2014_Pakistan_floods_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Philippines_Typhoon_Hagupit_en
+│   │   ├── 2014_Philippines_Typhoon_Hagupit_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2015_Cyclone_Pam_en
+│   │   ├── 2015_Cyclone_Pam_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── 2015_Nepal_Earthquake_en
+│   │   ├── 2015_Nepal_Earthquake_en_CF_labeled_data.tsv
+│   │   └── labeling-instructions.txt
+│   ├── README.txt
+│   └── Terms of use.txt
+├── CrisisNLP_Volunteers
+│   ├── 2014_California_Earthquake
+│   │   ├── 2014_California_Earthquake.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Chile_Earthquake_cl
+│   │   ├── 2014_chile_earthquake_cl.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Chile_Earthquake_en
+│   │   ├── 2014_Chile_Earthquake_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Hurricane_Odile_Mexico_en
+│   │   ├── 2014_Odile_Hurricane_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Iceland_Volcano_en
+│   │   ├── 2014_Iceland_Volcano_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Malaysia_Airline_MH370_en
+│   │   ├── 2014_Malaysia_Airline_MH370_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Middle_East_Respiratory_Syndrome_en
+│   │   ├── 2014_Middle_East_Respiratory_Syndrome_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2014_Philippines_Typhoon_Hagupit_en
+│   │   ├── 2014_Typhoon_Hagupit_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2015_Cyclone_Pam_en
+│   │   ├── 2015_Cyclone_Pam_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── 2015_Nepal_Earthquake_en
+│   │   ├── 2015_Nepal_Earthquake_en.csv
+│   │   └── labeling-instructions.txt
+│   ├── CrisisNLP_volunteers_labeled_data
+│   ├── Landslides_Worldwide_en
+│   │   ├── labeling-instructions.txt
+│   │   └── Landslides_Worldwide_en.csv
+│   ├── Landslides_Worldwide_esp
+│   │   ├── labeling-instructions.txt
+│   │   └── Landslides_Worldwide_esp.csv
+│   └── Landslides_Worldwide_fr
+│       ├── labeling-instructions.txt
+│       └── LandSlides_Worldwide_fr.csv
+├── ICWSM_2018
+│   ├── nepal
+│   │   ├── 2015_Nepal_Earthquake_dev.tsv
+│   │   ├── 2015_Nepal_Earthquake_test.tsv
+│   │   └── 2015_Nepal_Earthquake_train.tsv
+│   └── queensland
+│       ├── 2013_Queensland_Floods_dev.tsv
+│       ├── 2013_Queensland_Floods_test.tsv
+│       └── 2013_Queensland_Floods_train.tsv
+├── ISCRAM_2013
+│   └── Joplin_2011_labeled_data
+│       ├── 01_personal-informative-other
+│       │   └── a131709.csv
+│       ├── 02_informative_caution-infosrc-donation-damage-other
+│       │   └── a121571.csv
+│       ├── README.txt
+│       └── Terms of use.txt
+└── SWDM_2013
+    └── SWDM2013
+        └── sandy2012_labeled_data
+            ├── 01_personal-informative-other
+            │   └── a143145.csv
+            ├── 02_informative_caution-infosrc-donation-damage-other
+            │   └── a144267.csv
+            ├── README.txt
+            └── Terms of use.txt
+```
+
+Which resource from the earlier mentioned links correspond to which folder should be clear from the names of the downloaded files onces you download the resources. 
+
+Note however, I **renamed** some of the csv/tsv files. I did this so that I could systematically organize according to disaster types (though I don't really make much use of the organization other than when doing some statistics. Ideally train-test split can be done on the basis on disaster type to test how well the model generalize to unseen disasters.). I **renamed** the files for the convinience of coding (I grouped tweets into disaster types from various sources based on their names, and I needed them all to follow a consistent naming pattern). 
+
+
+An example of how to set up the directory:
+
+Let us say you downloaded 
 
 
 Releasing the full processed data would have made things a lot easier but Twitter privacy policies make that difficult. 
+
+
+## Using your own data
+
+Instead of all the above hassle you can set up your own code for data extraction, aggregation, and processing. 
+All you need to do is prepare three json files in this folder. 
 
 
 ## Saving (Multilingual) BERT
@@ -172,6 +460,9 @@ You can also download a different model here, but if you use some other 'BERT-li
 
 
 ## Testing
+
+## Import Errors
+
 
 
 ## Masked Language Modeling (MLM)
