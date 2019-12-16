@@ -12,7 +12,7 @@ Slides [here](https://docs.google.com/presentation/d/1R8PV1bEQqgApC2vYTMQhP0pXRv
 
 ## Credits
 
-Besides HuggingFace's library we used [Heinsen Routing](https://github.com/glassroom/heinsen_routing) as a reference.
+Besides HuggingFace's library we used [Heinsen Routing official code repository](https://github.com/glassroom/heinsen_routing) as a reference.
 
 ## Related Work
 
