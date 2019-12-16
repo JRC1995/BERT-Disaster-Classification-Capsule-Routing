@@ -110,7 +110,7 @@ year={2018}
 
 See [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/final_stats.txt).
 
-We prepare annotations for both multi-class classification and binary classification. We train for both in a multi-task framework.
+We prepare annotations for both multi-class classification and binary classification. We train for both task in a multi-task framework.
 
 ## Label Reduction Scheme
 
@@ -149,8 +149,6 @@ Instead of downloading from tweet ids, if you download from the above mentioned 
 3. [Process_3rd_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_3rd_Stage.py)
 
 4. [Process_4th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_4th_Stage.py)
-
-5. [Process_5th_Stage.py](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Classification/Process_Data/Process_5th_Stage.py)
 
 There are surely better ways to set up the pre-processing part than running them manually in this manner, but I am a bad coder. 
 
@@ -429,23 +427,57 @@ This is the exact directory structure that I used (all the data should be put [h
             └── Terms of use.txt
 ```
 
+(Any files other that .csv and .tsv are not important)
+
 Which resource from the earlier mentioned links correspond to which folder should be clear from the names of the downloaded files onces you download the resources. 
 
-Note however, I **renamed** some of the csv/tsv files. I did this so that I could systematically organize according to disaster types (though I don't really make much use of the organization other than when doing some statistics. Ideally train-test split can be done on the basis on disaster type to test how well the model generalize to unseen disasters.). I **renamed** the files for the convinience of coding (I grouped tweets into disaster types from various sources based on their names, and I needed them all to follow a consistent naming pattern). 
+Note however, I **renamed** some of the csv/tsv files. I did this so that I could systematically organize according to disaster types (though I don't really make much use of the organization other than when doing some statistics. Ideally train-test split can be done on the basis on disaster type to test how well the model generalize to unseen disasters.). I **renamed** the files for the convinience of coding (I grouped tweets into disaster types from various sources based on their names, and I needed them all to follow a consistent naming pattern). In retrospect, I should have done everything through code instead of manually renaming the files - because now it becomes much harder for other people to set up the data.  
 
 
-An example of how to set up the directory:
+#### An example of how to set up the directory from the downloaded resources:
 
-Let us say you downloaded 
+Let us say you downloaded "Labeled data of all the events annotated by volunteers" from [CrisisNLP Resource #1](https://crisisnlp.qcri.org/lrec2016/lrec2016.html)
 
+The downloaded file is named: "CrisisNLP_volunteers_labeled_data.zip". 
+
+From this you can figure out that the data corresponds to the data within "CrisisNLP_Volunteers" in the above directory tree. 
+Next you can compare the original directory tree within "CrisisNLP_volunteers_labeled_data.zip" and the above directory tree under "CrisisNLP_Volunteers" and check out for differences in names. For example, you will find that in the original directory tree, there is a file called "2014_Hurricane_Odile_Mexico_en.csv" but in my directory tree the same file is "2014_Odile_Hurricane_en.csv". So you have to rename it. This has to be done for all the files, but on the plus side there should be only a few files to rename (in retrospect, should have kept a log to keep track of what needs to renamed). 
+
+Also remove the csv/tsv files that do not appear in my directory tree. 
 
 Releasing the full processed data would have made things a lot easier but Twitter privacy policies make that difficult. 
 
 
-## Using your own data
+## Using your own data or your own data processing code
 
-Instead of all the above hassle you can set up your own code for data extraction, aggregation, and processing. 
-All you need to do is prepare three json files in this folder. 
+Instead of all the above hassle you can set up your own code for data extraction, aggregation, and processing. Ultimately, this may be the easiest thing to do for some of you given my clumsy setup. 
+
+All you need to do is prepare three json files in this [folder](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/tree/master/Classification/Processed_Data) - train_data.json, val_data.json, and test_data.json. Each file should have contents in the same format:
+
+```
+d = {}
+d["tweet_ids"] = test_tweet_ids # list of tweet ids (optional; can be ignored - not used later on)
+d["tweets"] = test_tweets # corresponding list of tweets
+d["labels"] = test_labels # corresponding list of multi-class labels
+d["binary_labels"] = test_binary_labels # corresponding list of binary class labels
+
+with open("test_data.json", 'w') as outfile:
+    json.dump(d, outfile)
+
+```
+
+In addition you would also need to prepare label_info.json
+
+```
+d = {}
+d["labels2idx"] = labels2idx # label to integer dictionary eg. {"class 1": 0, "class 2": 1....}
+d["binary_labels2idx"] = binary_labels2idx # binary label to integer dictionary eg. {"class 0": 0, "class 1": 1}
+d["label_weights"] = label_weights # label -> class weight dictionary eg. {"class 1": 1.0, "class 2": 1.0,.....}
+d["binary_label_weights"] = binary_label_weights  # binary label -> class weight dictionary eg. {"class 0": 1.0, "class 1": 1.0}
+
+with open("label_info.json", 'w') as outfile:
+    json.dump(d, outfile)
+```
 
 
 ## Saving (Multilingual) BERT
