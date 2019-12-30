@@ -1,7 +1,7 @@
 # Disaster-related Tweet Classification with BERT
 #### Exploring Attention-based and Capsule-Routing-based Layer Aggregation and Hidden state Aggregation
 
-See the Project Report [here](https://drive.google.com/file/d/13niJ6pXQ3tvQ_gwVCfazfEw8vwC2KNMj/view?usp=sharing) and the Presentation
+See the Project Report [here](https://github.com/JRC1995/BERT-Disaster-Classification-Capsule-Routing/blob/master/Project_Report.pdf) and the Presentation
 Slides [here](https://docs.google.com/presentation/d/1R8PV1bEQqgApC2vYTMQhP0pXRvDjZ5qXnsOaLhyB31w/edit?usp=sharing)
 
 ## Main Requirements
