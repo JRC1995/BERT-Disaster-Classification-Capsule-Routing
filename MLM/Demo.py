@@ -15,7 +15,7 @@ else:
 
 # Span Masking: https://arxiv.org/pdf/1907.10529.pdf
 
-text = "Hello world! This is Suraj - the infamous scammer!".lower()
+text = "Hello world! Let's test masked language modeling objective".lower()
 
 tokenizer = BertTokenizer.from_pretrained('../Classification/Pre_trained_BERT/')
 
