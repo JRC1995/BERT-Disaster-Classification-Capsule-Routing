@@ -99,8 +99,8 @@ class capsule_fusion(nn.Module):
             else:
                 log_p = -T.sum((V-mu_out.unsqueeze(0)).pow(2) / (2*var_out.unsqueeze(0)+self.epsilon), dim=-1)\
                     - 1-0.5*self.pi-0.5*T.sum(T.log(var_out.unsqueeze(0)+self.epsilon), dim=-1)
-                # log_p shape = L x N
-                R = F.softmax(F.logsigmoid(a_out).unsqueeze(0)+log_p.unsqueeze(-1), dim=-1)
+                # log_p shape = L x n_out x N
+                R = F.softmax(F.logsigmoid(a_out).unsqueeze(0)+log_p.unsqueeze(-1), dim=1)
 
                 # R shape = L x n_out x N x 1
 
